@@ -1,0 +1,191 @@
+$link-hover-color:#B3E5FC;
+$background-default-color: #F5F5F5;
+$background-gradient-end-color: #F5F5F5;
+$background-image-url-body:"../resources/education-background.png";
+$background-image-url-jumbotron:"../resources/megrow_cover_yt.png";
+
+table{
+    background-color: white;
+    border-radius: 10px;
+}
+
+.table{
+    @extend table;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.table-small-migrant{
+    @extend .table;
+}
+
+.table-big-migrant{
+    @extend .table;
+}
+
+@mixin background-gradient-and-image($default-color, $gradient, $image-path){
+    background:$default-color;
+    background: -webkit-linear-gradient(left, $default-color, $gradient);
+    background: -o-linear-gradient(right, $default-color, $gradient);
+    background: -moz-linear-gradient(right, $default-color, $gradient); 
+    background: linear-gradient(to right, $default-color, $gradient); 
+    /*    background-image: url($image-path);
+        background-size: 100%;
+        background-repeat: repeat-y;*/
+}
+
+body{
+    @include background-gradient-and-image($background-default-color, $background-gradient-end-color, $background-image-url-body)
+}
+
+#logo-header{
+    width: 40%;
+    height: 30%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-left: 5%;
+}
+
+div{
+    .form-login-migrant{
+
+    }
+}
+
+.error-info{
+    color: red;
+    padding-left: 15%;
+    padding-top: 20px;
+}
+
+.success-info{
+    color: #06BB06;
+    padding-left: 15%;
+    padding-top: 20px;
+}
+
+.col-sm-3{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+h3{
+    .logged-in-greeting{
+        float: right; 
+        margin-right: 1%;
+    }
+}
+
+a{
+    #logout-link{
+        float: right; 
+        margin-top: 330px;
+        margin-right: 10%;
+    }
+}
+
+@media screen and (min-width: 480px) {
+    h3{
+        .logged-in-greeting{
+            margin-top: 330px;
+        }
+    }
+    #call-to-action{
+        background-image: url($background-image-url-jumbotron);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+    }
+}
+
+.indent-left{
+    margin-left: 10%;
+}
+
+
+
+table{
+    td{
+        padding: 5px 5px 5px 5px;
+    }
+}
+
+button{
+    #btn-edit-st-data{
+        margin-right: 20%;
+        margin-top: 10px;
+    }
+}
+
+@mixin image-zoom-in-main($time, $function){
+    -webkit-transition:all $time $function;
+    -moz-transition:all $time $function;
+    -ms-transition:all $time $function;
+    -o-transition:all $time $function;
+    transition:all $time $function;
+}
+
+
+img{       
+    #logo-header{
+        width: 40%;
+        height: 30%;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        margin-left: 5%;
+    }            
+}
+
+.img-login{
+
+    @include image-zoom-in-main(0.5s, ease-out);
+} 
+
+@mixin image-zoom-in-hover($size){
+    -webkit-transform:scale($size);
+    -moz-transform:scale($size);
+    -ms-transform:scale($size);
+    -o-transform:scale($size);
+    transform:scale($size); 
+}
+
+
+.img-login:hover{
+    background-color:$link-hover-color;
+    @include image-zoom-in-hover(0.8);
+}
+
+
+.red{
+    color:red;
+}
+.form-area{
+    background-color: #FAFAFA;
+    padding: 10px 40px 60px;
+    margin: 10px 0px 60px;
+    border: 1px solid GREY;
+}
+
+hr{
+    display: block; 
+    content: ""; 
+    height: 30px; 
+    margin-top: -31px; 
+    border-style: solid; 
+    border-color: #8c8b8b; 
+    border-width: 0 0 1px 0; 
+    border-radius: 20px; 
+}
+
+.combo-box{
+    width: 100%;
+}
+
+#success_message{ display: none;}
+
+#register-student-img{
+    width: 65%;
+    height: 100px;
+}

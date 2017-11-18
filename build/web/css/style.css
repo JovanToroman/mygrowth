@@ -1,0 +1,121 @@
+table, .table, .table-small-migrant, .table-big-migrant {
+  background-color: white;
+  border-radius: 10px; }
+
+.table, .table-small-migrant, .table-big-migrant {
+  width: 70%;
+  margin: 0 auto; }
+
+body {
+  background: #F5F5F5;
+  background: -webkit-linear-gradient(left, #F5F5F5, #F5F5F5);
+  background: -o-linear-gradient(right, #F5F5F5, #F5F5F5);
+  background: -moz-linear-gradient(right, #F5F5F5, #F5F5F5);
+  background: linear-gradient(to right, #F5F5F5, #F5F5F5);
+  /*    background-image: url($image-path);
+      background-size: 100%;
+      background-repeat: repeat-y;*/ }
+
+#logo-header {
+  width: 40%;
+  height: 30%;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  margin-left: 5%; }
+
+.error-info {
+  color: red;
+  padding-left: 15%;
+  padding-top: 20px; }
+
+.success-info {
+  color: #06BB06;
+  padding-left: 15%;
+  padding-top: 20px; }
+
+.col-sm-3 {
+  margin-top: 30px;
+  margin-bottom: 30px; }
+
+h3 .logged-in-greeting {
+  float: right;
+  margin-right: 1%; }
+
+a #logout-link {
+  float: right;
+  margin-top: 330px;
+  margin-right: 10%; }
+
+@media screen and (min-width: 480px) {
+  h3 .logged-in-greeting {
+    margin-top: 330px; }
+
+  #call-to-action {
+    background-image: url("../resources/megrow_cover_yt.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle; } }
+.indent-left {
+  margin-left: 10%; }
+
+table td, .table td, .table-small-migrant td, .table-big-migrant td {
+  padding: 5px 5px 5px 5px; }
+
+button #btn-edit-st-data {
+  margin-right: 20%;
+  margin-top: 10px; }
+
+img #logo-header {
+  width: 40%;
+  height: 30%;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  margin-left: 5%; }
+
+.img-login {
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out; }
+
+.img-login:hover {
+  background-color: #B3E5FC;
+  -webkit-transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  -ms-transform: scale(0.8);
+  -o-transform: scale(0.8);
+  transform: scale(0.8); }
+
+.red {
+  color: red; }
+
+.form-area {
+  background-color: #FAFAFA;
+  padding: 10px 40px 60px;
+  margin: 10px 0px 60px;
+  border: 1px solid GREY; }
+
+hr {
+  display: block;
+  content: "";
+  height: 30px;
+  margin-top: -31px;
+  border-style: solid;
+  border-color: #8c8b8b;
+  border-width: 0 0 1px 0;
+  border-radius: 20px; }
+
+.combo-box {
+  width: 100%; }
+
+#success_message {
+  display: none; }
+
+#register-student-img {
+  width: 65%;
+  height: 100px; }
+
+/*# sourceMappingURL=style.css.map */
