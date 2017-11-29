@@ -12,11 +12,15 @@ import java.security.SecureRandom;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import model.Competence;
 import model.Migrant;
+import model.Record;
+import model.Result;
 import util.EmailUtil;
 import util.ImageUpload;
 
@@ -60,7 +64,7 @@ public class RegisterStudentAction extends AbstractAction {
                 +m.getStudentCode()+"\n\nKeep it safe at ALL times. It serves"
                 + " as your identity on our platform.\n\nNow go,"
                 + " learn and make yourself proud!\n\nMeGrow team.", "Welcome to MeGrow!", "megroweducation@gmail.com");
-        DBBroker.getInstance().addRecord(m);
+        addStudent(m);
         return "";
     }
 
@@ -73,6 +77,16 @@ public class RegisterStudentAction extends AbstractAction {
     private Date getDate(String date) throws ParseException{
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-dd-MM");
         return sdf.parse(date);
+    }
+    
+    private void populateStudentResultFields(Migrant m){
+        List<Competence> allCompetences = (List<Competence>) DBBroker.getInstance().getRecords(new Competence());
+        List<Result> allResults = (List<Result>) DBBroker.getInstance().getRecords(new Result());
+    }
+    
+    private void addStudent(Migrant m){
+        populateStudentResultFields(m);
+        DBBroker.getInstance().addRecord(m);
     }
 
 }

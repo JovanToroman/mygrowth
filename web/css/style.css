@@ -6,15 +6,32 @@ table, .table, .table-small-migrant, .table-big-migrant {
   width: 70%;
   margin: 0 auto; }
 
+#table-teacher-header-competence {
+  width: 25%; }
+
+#table-teacher-header-result {
+  width: 25%;
+  height: 30px; }
+
+#table-teacher-header-level {
+  width: 10%; }
+
+#table-teacher-header-note {
+  width: 50%; }
+
+.text-area-tch-ed-st {
+  width: 150px;
+  height: 100px; }
+
+.radio {
+  width: 10%; }
+
 body {
   background: #F5F5F5;
   background: -webkit-linear-gradient(left, #F5F5F5, #F5F5F5);
   background: -o-linear-gradient(right, #F5F5F5, #F5F5F5);
   background: -moz-linear-gradient(right, #F5F5F5, #F5F5F5);
-  background: linear-gradient(to right, #F5F5F5, #F5F5F5);
-  /*    background-image: url($image-path);
-      background-size: 100%;
-      background-repeat: repeat-y;*/ }
+  background: linear-gradient(to right, #F5F5F5, #F5F5F5); }
 
 #logo-header {
   width: 40%;
@@ -74,6 +91,9 @@ img #logo-header {
   margin-bottom: 20px;
   margin-left: 5%; }
 
+.img-profile {
+  height: 100px; }
+
 .img-login {
   -webkit-transition: all 0.5s ease-out;
   -moz-transition: all 0.5s ease-out;
@@ -117,5 +137,8 @@ hr {
 #register-student-img {
   width: 65%;
   height: 100px; }
+
+.btn-edit-st-teach-data {
+  margin-right: 15%; }
 
 /*# sourceMappingURL=style.css.map */

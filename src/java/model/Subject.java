@@ -163,7 +163,7 @@ public class Subject implements Serializable, Record {
     }
 
     @Override
-    public List<?> getRecords(EntityManager em, UserTransaction userTxn) {
+    public List<? extends Record> getRecords(EntityManager em, UserTransaction userTxn) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

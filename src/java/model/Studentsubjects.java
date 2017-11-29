@@ -186,7 +186,7 @@ public class Studentsubjects implements Serializable, Record {
     }
 
     @Override
-    public List<?> getRecords(EntityManager em, UserTransaction userTxn) {        
+    public List<? extends Record> getRecords(EntityManager em, UserTransaction userTxn) {        
         Migrant m = em.find(Migrant.class, this.getStudentsubjectsPK().getStudentCode());
         Query q = em.createNamedQuery("Studentsubjects.findByStudentCode").setHint(QueryHints.CACHE_USAGE, CacheUsage.DoNotCheckCache);
         q = q.setParameter("studentCode", m.getStudentCode());

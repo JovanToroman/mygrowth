@@ -23,15 +23,38 @@ table{
     @extend .table;
 }
 
+#table-teacher-header-competence{
+    width: 25%;
+}
+
+#table-teacher-header-result{
+    width: 25%;
+    height: 30px;
+}
+
+#table-teacher-header-level{
+    width: 10%;
+}
+
+#table-teacher-header-note{
+    width: 50%;
+}
+
+.text-area-tch-ed-st{ 
+    width: 150px;
+    height: 100px;
+}
+
+.radio{
+    width: 10%;
+}
+
 @mixin background-gradient-and-image($default-color, $gradient, $image-path){
     background:$default-color;
     background: -webkit-linear-gradient(left, $default-color, $gradient);
     background: -o-linear-gradient(right, $default-color, $gradient);
     background: -moz-linear-gradient(right, $default-color, $gradient); 
     background: linear-gradient(to right, $default-color, $gradient); 
-    /*    background-image: url($image-path);
-        background-size: 100%;
-        background-repeat: repeat-y;*/
 }
 
 body{
@@ -44,12 +67,6 @@ body{
     margin-top: 30px;
     margin-bottom: 20px;
     margin-left: 5%;
-}
-
-div{
-    .form-login-migrant{
-
-    }
 }
 
 .error-info{
@@ -104,8 +121,6 @@ a{
     margin-left: 10%;
 }
 
-
-
 table{
     td{
         padding: 5px 5px 5px 5px;
@@ -138,8 +153,11 @@ img{
     }            
 }
 
-.img-login{
+.img-profile{
+    height: 100px;
+}
 
+.img-login{
     @include image-zoom-in-main(0.5s, ease-out);
 } 
 
@@ -188,4 +206,8 @@ hr{
 #register-student-img{
     width: 65%;
     height: 100px;
+}
+
+.btn-edit-st-teach-data{
+    margin-right: 15%;
 }

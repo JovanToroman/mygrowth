@@ -9,7 +9,7 @@ import model.Migrantteacher;
 import model.Studentresults;
 import model.Studentsubjects;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-10-13T22:35:45")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-11-27T20:34:23")
 @StaticMetamodel(Migrant.class)
 public class Migrant_ { 
 

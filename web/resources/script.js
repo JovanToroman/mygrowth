@@ -33,8 +33,9 @@ function addField() {
                 + '<div class="file-upload">'
                 + '<input class="btn btn-default" type="file" name="subjectImage' + subjectName + '" id="fileChooser' + subjectName + '"/><br/><br/>'
                 + '</div>'
+                + '<button class="btn btn-default" type="button" onclick=removeSubject(this)>Remove this subject</button>'
                 + '</td>'
-                + '<td><button class="btn btn-default" type="button" onclick=removeSubject(this)>Remove this subject</button></td>'
+                + '<td></td>'
                 + '</tr>'
                 );
     } else {
@@ -46,7 +47,6 @@ function addFieldResult() {
     var table = document.getElementById("table-big-migrant");
     var competenceName = document.getElementById("new-competence-name").value;
     var resultName = document.getElementById("new-result-name").value;
-    console.log('competence: ' + competenceName);
     var duplicate = false;
     for (var i = 0, row; row = table.rows[i]; i++) {
         console.log(row.id);
@@ -114,7 +114,7 @@ function addFieldResult() {
         }
 
     } else {
-        alert('That subject already exists!');
+        alert('That result already exists!');
     }
 }
 
@@ -169,6 +169,80 @@ $(document).ready(function () {
             $('#characterLeft').text(ch + ' characters left');
             $('#btnSubmit').removeClass('disabled');
             $('#characterLeft').removeClass('red');
+        }
+    });
+});
+
+$(document).ready(function () {
+    $("#new-competence-name").change(function () {
+        var val = $(this).val();
+        console.log(val);
+        switch (val) {
+            case "A responsible attitude towards health care, personal and common hygiene":
+                $("#new-result-name").html('<option>Can provide first aid</option>'
+                        + '<option>Has knowledge of proper diet</option>'
+                        + ' <option>Is familiar with how to maintain personal and room hygiene</option>'
+                        + ' <option>Nourishes a healthy lifestyle</option>'
+                        + ' <option>Recognizes disease and acknowledges importance of treatment</option>');
+                break;
+            case "Communicational skills and language knowledge":
+                $("#new-result-name").html('<option>Non-spoken communication - expressing feelings</option>'
+                        + '<option>Non-spoken communication - expressing needs</option>'
+                        + ' <option>Spoken communication - in English language, independently</option>'
+                        + ' <option>Spoken communication - in Serbian language, independently</option>'
+                        + ' <option>Spoken communication - with the help of translator</option>');
+                break;
+            case "Ability of personal planning during studying":
+                $("#new-result-name").html('<option>Acknowledges content theme</option>'
+                        + '<option>Independently chooses content</option>'
+                        + ' <option>Makes conclusions</option>'
+                        + ' <option>Points out the main idea and content essence</option>'
+                        + ' <option>Separates content by importance</option>'
+                        + ' <option>Time management</option>');
+                break;
+            case "Developing an aesthetic dimension and free art expression":
+                $("#new-result-name").html('<option>Considers art a valuable contribution to development of civilization</option>'
+                        + '<option>Is aware of connection between culture, science, art and technology</option>'
+                        + ' <option>Openness and appreciation towards new forms of art</option>'
+                        + ' <option>Recognizes a connection between different art expressions</option>'
+                        + ' <option>Recognizes talent in him/herself and expresses him/herself freely</option>');
+                break;
+            case "Responsible attitude towards environment and development of ecological awareness":
+                $("#new-result-name").html('<option>Actively protects environment and properly disposes waste</option>'
+                        + '<option>Conscious of environment risks and raises ecological awareness in others</option>'
+                        + ' <option>Understands and develops a healthy and safe environment concept</option>'
+                        + ' <option>Understands the importance of recycling and applies it in a basic way</option>'
+                        + ' <option>Uses energy sparefully</option>');
+                break;
+            case "Use of ICT in school":
+                $("#new-result-name").html('<option>Analizes and organizes informations</option>'
+                        + '<option>Applies educational context in everyday life</option>'
+                        + ' <option>Expresses him/herself via electronical means</option>'
+                        + ' <option>Judges information reliability and relevance</option>'
+                        + ' <option>Successfully queries information</option>'
+                        + ' <option>Utilizes and is familiar with modern ICT devices</option>');
+                break;
+            case "Work in group and active participation in school life":
+                $("#new-result-name").html('<option>Actively participates and cooperates with his group</option>'
+                        + '<option>Aware of his/her position within a group and respectful of other group members</option>'
+                        + ' <option>Contributes to group dynamic in a constructive way</option>'
+                        + ' <option>Has clearly defined beliefs and is respectful of other members</option>'
+                        + ' <option>Respectful of authority, social norms and rules of </option>');
+                break;
+            case "Working with data":
+                $("#new-result-name").html('<option>Differentiates information from facts</option>'
+                        + '<option>Working with charts and diagrams</option>'
+                        + ' <option>Working with multimedia devices</option>'
+                        + ' <option>Working with numbers and measurement units</option>'
+                        + ' <option>Working with textual data</option>');
+                break;
+            case "Proactiveness and initiative":
+                $("#new-result-name").html('<option>Expresses and advocates personal ideas and beliefs</option>'
+                        + '<option>Is able to represent personal capabilities and business skills</option>'
+                        + ' <option>Manages and uses resources wisely (time, money, knowledge...)</option>'
+                        + ' <option>Practically applies his/her proactiveness and initiative</option>'
+                        + ' <option>Sets appropriate and attainable goals</option>');
+                break;
         }
     });
 });

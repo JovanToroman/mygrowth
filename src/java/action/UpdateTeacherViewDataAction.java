@@ -7,6 +7,7 @@ package action;
 
 import constants.WebConstants;
 import dbbroker.DBBroker;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import javax.servlet.http.HttpServletRequest;
+import jdk.nashorn.internal.runtime.JSType;
 import model.Competence;
 import model.Migrant;
 import model.Result;
@@ -36,42 +38,29 @@ public class UpdateTeacherViewDataAction extends AbstractAction {
     public String execute(HttpServletRequest request) {
         Migrant m = (Migrant) request.getSession().getAttribute(WebConstants.MIGRANT_LOGGED_IN);
         Teacher t = (Teacher) request.getSession().getAttribute(WebConstants.TEACHER_LOGGED_IN);
-        List<Studentresults> listOfStudentResults = (List<Studentresults>) request.getSession().getAttribute(WebConstants.STUDENT_RESULTS_EVALUATION);
+        List<Studentresults> listOfStudentResults = new ArrayList<>();
         List<Result> listOfResults = (List<Result>) request.getSession().getAttribute(WebConstants.STUDENT_RESULTS);
         List<Competence> listOfCompetences = (List<Competence>) request.getSession().getAttribute(WebConstants.STUDENT_COMPETENCES);
         List<Result> listOfResultsMarkedForDeletion = new ArrayList<>();
-        List<Result> listOfNewResults = new ArrayList<>();
         Map map = request.getParameterMap();
         Enumeration en = request.getParameterNames();
         List<Integer> listOfResultIDs = new ArrayList<>();
+        List<String> listOfResultNames = new ArrayList<>();
         for (Object parameter : Collections.list(en)) {
             String parnam = (String) parameter;
             if (parnam.startsWith("input")) {
-                listOfResultIDs.add(Integer.valueOf(parnam.substring(5)));
+                if(parnam.length() < 9){
+                    listOfResultIDs.add(Integer.valueOf(parnam.substring(5)));
+                } else {
+                    listOfResultNames.add(String.valueOf(parnam.substring(5)));
+                }
             }
             if (parnam.startsWith("delete")) {
                 for (Result res : listOfResults) {
                     if (res.getResultName().equals(parnam.substring(6))) {
-                        listOfResultsMarkedForDeletion.add(res);                        
+                        listOfResultsMarkedForDeletion.add(res);
                     }
                 }
-            }
-            if (parnam.startsWith("newinput")) {
-                String[] temp = parnam.substring(8).split("_");
-                String resultName = temp[0];
-                String competenceName = temp[1];
-                Result r = new Result();
-                for (Competence comp : listOfCompetences) {
-                    if (comp.getCompetenceName().equals(competenceName)) {
-                        System.out.println("Ime kompetencije iz kolekcije koju treba da dodelim: " + comp.getCompetenceName());
-                        r.setCompetenceID(comp);
-                    }
-                }
-                r.setResultName(resultName);
-                r.setResultID(listOfResults.get(listOfResults.size() - 1).getResultID() + 1);
-                System.out.println("ID novog rezultata: "+r.getResultID());
-                listOfNewResults.add(r);
-                listOfResults.add(r);
             }
         }
         for (Integer resultID : listOfResultIDs) {
@@ -92,29 +81,34 @@ public class UpdateTeacherViewDataAction extends AbstractAction {
             srl.setLevel(level);
             listOfStudentResults.add(srl);
         }
-        for (Result newResult : listOfNewResults) {
-            Studentresults srl = new Studentresults(new StudentresultsPK(newResult.getResultID(), m.getStudentCode(), t.getTeacherCode()));
-            srl.setResult(newResult);
-            String note = Arrays.toString((String[]) map.get("newinput" + newResult.getResultName() + "_" + newResult.getCompetenceID().getCompetenceName())).replace("[", "");
-            note = note.replace("]", "");
-            srl.setNote(note);
-            String level = Arrays.toString((String[]) map.get("newradio" + newResult.getResultName())).replace("[", "");
-            level = level.replace("]", "");
-            srl.setLevel(level);
-            listOfStudentResults.add(srl);
-            System.out.println("Lista rezultata studenata sa dodatim novim: "+listOfStudentResults+"\n");
-        }
-        System.out.println("Lista rezultata za brisanje: "+listOfResultsMarkedForDeletion);
-        for (Result res : listOfResultsMarkedForDeletion) {
-            DBBroker.getInstance().deleteRecord(new Studentresults(res.getResultID(), m.getStudentCode(), t.getTeacherCode()));
-            DBBroker.getInstance().deleteRecord(res);
-            listOfResults.remove(res);
+
+        for (String resultName : listOfResultNames) {
+            System.out.println("Ime rezultata iz imena rez.: "+resultName);
+            Result res = null;
+            for (Result result : listOfResults) {
+                if (Objects.equals(result.getResultName(), resultName)) {
+                    res = result;
+                }
+            }
+            System.out.println("Rezultat koji dobijem iz for-a za nove rezultate: " + res);
+            if (res != null) {
+                Studentresults srl = new Studentresults(new StudentresultsPK(res.getResultID(), m.getStudentCode(), t.getTeacherCode()));
+                srl.setResult(res);
+                String note = Arrays.toString((String[]) map.get("input" + resultName)).replace("[", "");
+                note = note.replace("]", "");
+                srl.setNote(note);
+                String level = Arrays.toString((String[]) map.get("radio" + resultName)).replace("[", "");
+                level = level.replace("]", "");
+                srl.setLevel(level);
+                listOfStudentResults.add(srl);
+            }
         }
 
-        for (Result newRes : listOfNewResults) {
-            DBBroker.getInstance().addRecord(newRes);
-            System.out.println("Novi rezultati: " + newRes);
+        System.out.println("Lista rezultata za brisanje: " + listOfResultsMarkedForDeletion);
+        for (Result res : listOfResultsMarkedForDeletion) {
+            DBBroker.getInstance().deleteRecord(new Studentresults(res.getResultID(), m.getStudentCode(), t.getTeacherCode()));
         }
+
         for (Studentresults studentResult : listOfStudentResults) {
             DBBroker.getInstance().updateRecord(studentResult);
         }

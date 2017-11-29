@@ -114,7 +114,7 @@ public class Result implements Serializable, Record {
 
     @Override
     public String toString() {
-        return "model.Result[ resultID=" + resultID + " ]";
+        return "model.Result[ resultName=" + getResultName() + " ]";
     }
 
     @Override
@@ -148,7 +148,7 @@ public class Result implements Serializable, Record {
     }
 
     @Override
-    public List<?> getRecords(EntityManager em, UserTransaction userTxn) {
+    public List<? extends Record> getRecords(EntityManager em, UserTransaction userTxn) {
         return em.createQuery("SELECT e FROM Result e").getResultList();
     }
 

@@ -5,7 +5,7 @@
         <table class="table" border="0" cellpadding="3" id="table-big-migrant">
             <tbody id="new-subjects-container">
                 <tr>
-                    <td rowspan="2"><img height="100px" src="${migrant_logged_in.profileImageUrl}"/></td>
+                    <td rowspan="2"><img class="img-profile" src="${migrant_logged_in.profileImageUrl}"/></td>
                     <td>${migrant_logged_in.countryOfOrigin}</td>
                 </tr>
                 <tr>
@@ -42,7 +42,7 @@
                 </tr>
             </tbody>
         </table>
-        <input class="btn btn-default pull-right" id="btn-edit-st-data" type="submit" value="Edit" name="editStudentView" />
+        <input class="btn btn-default pull-right col-sm-3 btn-edit-st-teach-data" type="submit" value="Edit" name="editStudentView" />
         <input type="hidden" id="akcija" name="akcija" value="izmeniStudentovPogled" />
     </form>    
 </body>

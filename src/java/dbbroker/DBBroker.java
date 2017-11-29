@@ -40,7 +40,7 @@ public class DBBroker {
         return r.getRecord(em, userTxn);
     }
     
-    public List<?> getRecords(Record r){
+    public List<? extends Record> getRecords(Record r){
         return r.getRecords(em, userTxn);
     }
     

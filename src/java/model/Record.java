@@ -15,7 +15,7 @@ import javax.transaction.UserTransaction;
  */
 public interface Record {
     public Object getRecord(EntityManager em, UserTransaction userTxn) throws Exception;
-    public List<?> getRecords(EntityManager em, UserTransaction userTxn);
+    public List<? extends Record> getRecords(EntityManager em, UserTransaction userTxn);
     public void deleteRecord(EntityManager em, UserTransaction userTxn);
     public void addRecord(EntityManager em, UserTransaction userTxn);
     public void updateRecord(EntityManager em, UserTransaction userTxn);

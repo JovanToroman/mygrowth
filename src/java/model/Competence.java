@@ -88,13 +88,13 @@ public class Competence implements Serializable, Record {
     public void setResultCollection(Collection<Result> resultCollection) {
         this.resultCollection = resultCollection;
     }
-    
-    public int getNumberOfResults(List<Studentresults> lor){
+
+    public int getNumberOfResults(List<Studentresults> lor) {
         int count = 0;
         for (Studentresults sr : lor) {
-            if(sr!=null && sr.getResult().getCompetenceID().getCompetenceName().equals(this.getCompetenceName())){
+            if (sr != null && sr.getResult().getCompetenceID().getCompetenceName().equals(this.getCompetenceName())) {
                 count++;
-            }            
+            }
         }
         return count;
     }
@@ -130,7 +130,7 @@ public class Competence implements Serializable, Record {
     }
 
     @Override
-    public List<?> getRecords(EntityManager em, UserTransaction userTxn) {
+    public List<? extends Record> getRecords(EntityManager em, UserTransaction userTxn) {
         return em.createQuery("SELECT e FROM Competence e").getResultList();
     }
 
@@ -148,5 +148,4 @@ public class Competence implements Serializable, Record {
     public void updateRecord(EntityManager em, UserTransaction userTxn) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }

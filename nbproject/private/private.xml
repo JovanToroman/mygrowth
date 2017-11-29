@@ -3,9 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/solstinger/Documents/megrow_backup_10.10/MigroMe/web/resources/script.js</file>
-            <file>file:/home/solstinger/Documents/megrow_backup_10.10/MigroMe/web/WEB-INF/jsp/content/teacher-edit-teacher-view-content.jsp</file>
-            <file>file:/home/solstinger/Documents/megrow_backup_10.10/MigroMe/web/WEB-INF/jsp/content/teacher-content.jsp</file>
+            <file>file:/C:/Users/solstinger/Documents/megrow_backup_10.10/MigroMe/web/WEB-INF/template/template.jsp</file>
+            <file>file:/C:/Users/solstinger/Documents/megrow_backup_10.10/MigroMe/web/WEB-INF/jsp/content/teacher-edit-teacher-view-content.jsp</file>
+            <file>file:/C:/Users/solstinger/Documents/megrow_backup_10.10/MigroMe/src/java/action/EditTeacherViewDeliverPageAction.java</file>
+            <file>file:/C:/Users/solstinger/Documents/megrow_backup_10.10/MigroMe/src/java/model/Studentresults.java</file>
+            <file>file:/C:/Users/solstinger/Documents/megrow_backup_10.10/MigroMe/web/WEB-INF/jsp/content/teacher-content.jsp</file>
+            <file>file:/C:/Users/solstinger/Documents/megrow_backup_10.10/MigroMe/src/java/action/UpdateTeacherViewDataAction.java</file>
         </group>
     </open-files>
 </project-private>
