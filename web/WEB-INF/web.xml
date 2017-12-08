@@ -18,11 +18,14 @@
     </welcome-file-list>
     <persistence-context-ref>
         <persistence-context-ref-name>persistence/LogicalName</persistence-context-ref-name>
-        <persistence-unit-name>MeGrowPU</persistence-unit-name>
+        <persistence-unit-name>MyGrowthPU</persistence-unit-name>
     </persistence-context-ref>
     <resource-ref>
         <res-ref-name>UserTransaction</res-ref-name>
         <res-type>javax.transaction.UserTransaction</res-type>
         <res-auth>Container</res-auth>
     </resource-ref>
+    <error-page>
+        <location>/whoops.jsp</location>
+    </error-page>
 </web-app>

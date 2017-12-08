@@ -5,7 +5,7 @@
         <table class="table" border="0" cellpadding="3" id="table-big-migrant">
             <tbody id="new-subjects-container">
                 <tr>
-                    <td rowspan="2"><img class="img-profile" src="${migrant_logged_in.profileImageUrl}"/></td>
+                    <td rowspan="2"><img class="img-profile" src="./resources/${migrant_logged_in.profileImageUrl}"/></td>
                     <td>${migrant_logged_in.countryOfOrigin}</td>
                 </tr>
                 <tr>

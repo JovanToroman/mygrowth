@@ -121,7 +121,7 @@ public class UpdateTeacherViewDataAction extends AbstractAction {
         request.getSession().setAttribute(WebConstants.NUMBER_OF_RESULTS_PER_COMPETENCE, numberOfResultsPerCompetence);
         request.getSession().setAttribute(WebConstants.STUDENT_RESULTS_EVALUATION, listOfStudentResults);
         request.getSession().setAttribute(WebConstants.STUDENT_RESULTS, listOfResults);
-        request.getSession(false).setAttribute(WebConstants.TEACHER_VIEW_DATA_SUCCESSFULLY_UPDATED, true);
+        request.getSession(false).setAttribute(WebConstants.TEACHER_VIEW_DATA_SUCCESSFULLY_UPDATED, false);
         return WebConstants.PAGE_TEACHER_SELECT_ACTION;
     }
 

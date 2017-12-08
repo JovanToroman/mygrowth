@@ -3,6 +3,10 @@ $background-default-color: #F5F5F5;
 $background-gradient-end-color: #F5F5F5;
 $background-image-url-body:"../resources/education-background.png";
 $background-image-url-jumbotron:"../resources/megrow_cover_yt.png";
+$student-login-image: img-login-student;
+$student-login-image-tooltip: tooltip-text-student;
+$teacher-login-image: img-login-teacher;
+$teacher-login-image-tooltip: tooltip-text-teacher;
 
 table{
     background-color: white;
@@ -47,18 +51,6 @@ table{
 
 .radio{
     width: 10%;
-}
-
-@mixin background-gradient-and-image($default-color, $gradient, $image-path){
-    background:$default-color;
-    background: -webkit-linear-gradient(left, $default-color, $gradient);
-    background: -o-linear-gradient(right, $default-color, $gradient);
-    background: -moz-linear-gradient(right, $default-color, $gradient); 
-    background: linear-gradient(to right, $default-color, $gradient); 
-}
-
-body{
-    @include background-gradient-and-image($background-default-color, $background-gradient-end-color, $background-image-url-body)
 }
 
 #logo-header{
@@ -108,7 +100,7 @@ a{
         }
     }
     #call-to-action{
-        background-image: url($background-image-url-jumbotron);
+        /*        background-image: url($background-image-url-jumbotron);*/
         background-size: 100%;
         background-repeat: no-repeat;
         display: inline-block;
@@ -134,15 +126,6 @@ button{
     }
 }
 
-@mixin image-zoom-in-main($time, $function){
-    -webkit-transition:all $time $function;
-    -moz-transition:all $time $function;
-    -ms-transition:all $time $function;
-    -o-transition:all $time $function;
-    transition:all $time $function;
-}
-
-
 img{       
     #logo-header{
         width: 40%;
@@ -157,9 +140,24 @@ img{
     height: 100px;
 }
 
-.img-login{
-    @include image-zoom-in-main(0.5s, ease-out);
-} 
+//------------------------------------------------------------------------------
+//Mixin definitions
+//------------------------------------------------------------------------------
+@mixin background-gradient-and-image($default-color, $gradient, $image-path){
+    background:$default-color;
+    background: -webkit-linear-gradient(left, $default-color, $gradient);
+    background: -o-linear-gradient(right, $default-color, $gradient);
+    background: -moz-linear-gradient(right, $default-color, $gradient); 
+    background: linear-gradient(to right, $default-color, $gradient); 
+}
+
+@mixin image-zoom-in-main($time, $function){
+    -webkit-transition:all $time $function;
+    -moz-transition:all $time $function;
+    -ms-transition:all $time $function;
+    -o-transition:all $time $function;
+    transition:all $time $function;
+}
 
 @mixin image-zoom-in-hover($size){
     -webkit-transform:scale($size);
@@ -169,12 +167,59 @@ img{
     transform:scale($size); 
 }
 
+@mixin tooltip($tooltip-host, $tooltip-popup){
 
+    .#{$tooltip-host} .#{$tooltip-popup} {
+        visibility: hidden;
+        width: 120px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px; 
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        top: 150%;
+        left: 50%;
+        margin-left: -60px;
+    }
+
+    .#{$tooltip-host} .#{$tooltip-popup}::after {
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent black transparent;
+    }
+
+    .#{$tooltip-host}:hover .#{$tooltip-popup} {
+        visibility: visible;
+    }
+}
+
+//------------------------------------------------------------------------------
+//Mixins aplied
+//------------------------------------------------------------------------------
 .img-login:hover{
     background-color:$link-hover-color;
     @include image-zoom-in-hover(0.8);
 }
 
+.img-login{
+    @include image-zoom-in-main(0.5s, ease-out);
+}
+
+body{
+    @include background-gradient-and-image($background-default-color, $background-gradient-end-color, $background-image-url-body)
+}
+
+    @include tooltip($student-login-image, $student-login-image-tooltip);
+    
+    @include tooltip(teacher-login-image, teacher-login-image-tooltip);
+//------------------------------------------------------------------------------
 
 .red{
     color:red;
@@ -206,6 +251,7 @@ hr{
 #register-student-img{
     width: 65%;
     height: 100px;
+    margin-bottom: 1em;
 }
 
 .btn-edit-st-teach-data{

@@ -13,10 +13,12 @@ import constants.WebConstants;
  */
 public class PageResolver {
     public static String getPage(String view){
-        String page = "login-landing.jsp";
+        String page = "/login-landing.jsp";
         switch(view){
             case WebConstants.PAGE_TEACHER_LOGIN_BAD_LOGIN: page = "/login-teacher-bad.jsp"; break;
             case WebConstants.PAGE_MIGRANT_LOGIN_BAD_LOGIN: page = "/login-migrant-bad.jsp"; break;
+            case WebConstants.PAGE_TEACHER_SUCCESSFULLY_REGISTERED: page = "/successfully-registered-teacher.jsp"; break;
+            case WebConstants.PAGE_MIGRANT_SUCCESSFULLY_REGISTERED: page = "/successfully-registered-student.jsp"; break;
             case WebConstants.PAGE_TEACHER_VIEW: page = "/WEB-INF/jsp/teacher-view.jsp"; break;
             case WebConstants.PAGE_MIGRANT_VIEW: page = "/WEB-INF/jsp/migrant-view.jsp"; break;
             case WebConstants.PAGE_TEACHER_SELECT_ACTION: page = "/WEB-INF/jsp/teacher-select-action.jsp"; break;

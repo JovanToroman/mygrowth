@@ -5,9 +5,14 @@
  */
 package action;
 
+import constants.WebConstants;
 import dbbroker.DBBroker;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.security.SecureRandom;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import model.Teacher;
 import util.EmailUtil;
@@ -29,19 +34,30 @@ public class RegisterTeacherAction extends AbstractAction {
         t.setLastName(request.getParameter("last-name"));
         t.setEmail(request.getParameter("email"));
         t.setEducationalInstitutionName(request.getParameter("institution"));
-        EmailUtil.sendEmail(t.getEmail(), "Hi!\n\nWelcome to MeGrow: A platform for keeping track"
-                + " of migrant students' education.\n\nHere is your teacher code: "
-                +t.getTeacherCode()+"\n\nKeep it safe at ALL times. It serves"
-                + " as your identity on our platform.\n\nNow let's go"
-                + " help migrants make a better future for themselves!\n\nMeGrow team.", "Welcome to MeGrow!", "megroweducation@gmail.com");
-        DBBroker.getInstance().addRecord(t);
-        return "";
+        try {
+            DBBroker.getInstance().addRecord(t);
+            sendEmailTeacher(t, request);
+            request.setAttribute(WebConstants.REGISTRATION_RESULT, WebConstants.REGISTRATION_SUCCESSFUL_MESSAGE);
+        } catch (IOException | ServletException ex) {
+            Logger.getLogger(RegisterStudentAction.class.getName()).log(Level.SEVERE, null, ex);
+            request.setAttribute(WebConstants.REGISTRATION_RESULT, WebConstants.REGISTRATION_UNSUCCESSFUL_MESSAGE);
+        }
+        return WebConstants.PAGE_TEACHER_SUCCESSFULLY_REGISTERED;
+
     }
 
     private Teacher addTeacherKey(Teacher t) {
         SecureRandom random = new SecureRandom();
-        t.setTeacherCode(new BigInteger(90, random).toString(20));
+        t.setTeacherCode(new BigInteger(70, random).toString(20));
         return t;
+    }
+
+    private void sendEmailTeacher(Teacher recipient, HttpServletRequest request) throws IOException, ServletException {
+        EmailUtil.sendEmail(recipient.getEmail(), "Hi!\n\nWelcome to MyGrowth: A platform for keeping track"
+                + " of migrant students' education.\n\nHere is your teacher code: "
+                + recipient.getTeacherCode() + "\n\nKeep it safe at ALL times. It serves"
+                + " as your identity on our platform.\n\nNow let's go"
+                + " help migrants make a better future for themselves!\n\nMyGrowth team.", "Welcome to MyGrowth!", "megroweducation@gmail.com");
     }
 
 }

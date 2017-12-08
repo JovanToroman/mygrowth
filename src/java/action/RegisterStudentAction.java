@@ -5,6 +5,7 @@
  */
 package action;
 
+import constants.WebConstants;
 import dbbroker.DBBroker;
 import java.io.IOException;
 import java.math.BigInteger;
@@ -12,15 +13,11 @@ import java.security.SecureRandom;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import model.Competence;
 import model.Migrant;
-import model.Record;
-import model.Result;
 import util.EmailUtil;
 import util.ImageUpload;
 
@@ -52,20 +49,17 @@ public class RegisterStudentAction extends AbstractAction {
             System.out.println(m.getDateOfBirth());
         } catch (ParseException ex) {
             Logger.getLogger(RegisterStudentAction.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }                
         try {
-            m.setProfileImageUrl(ImageUpload.uploadImage(request, "studentPhoto", m.getStudentCode()));
-            System.out.println(m.getProfileImageUrl());
-        } catch (IOException | ServletException ex) {
+            addStudent(m);
+            sendEmailStudent(m, request);
+            request.setAttribute(WebConstants.REGISTRATION_RESULT, WebConstants.REGISTRATION_SUCCESSFUL_MESSAGE);
+        } catch (IOException | ServletException ex) {            
             Logger.getLogger(RegisterStudentAction.class.getName()).log(Level.SEVERE, null, ex);
+            request.setAttribute(WebConstants.REGISTRATION_RESULT, WebConstants.REGISTRATION_UNSUCCESSFUL_MESSAGE);
         }
-        EmailUtil.sendEmail(m.getEmail(), "Hi!\n\nWelcome to MeGrow: A platform for keeping track"
-                + " of your education!\n\nHere is your student code: "
-                +m.getStudentCode()+"\n\nKeep it safe at ALL times. It serves"
-                + " as your identity on our platform.\n\nNow go,"
-                + " learn and make yourself proud!\n\nMeGrow team.", "Welcome to MeGrow!", "megroweducation@gmail.com");
-        addStudent(m);
-        return "";
+        
+        return WebConstants.PAGE_MIGRANT_SUCCESSFULLY_REGISTERED;
     }
 
     private Migrant addMigrantKey(Migrant m) {
@@ -79,14 +73,17 @@ public class RegisterStudentAction extends AbstractAction {
         return sdf.parse(date);
     }
     
-    private void populateStudentResultFields(Migrant m){
-        List<Competence> allCompetences = (List<Competence>) DBBroker.getInstance().getRecords(new Competence());
-        List<Result> allResults = (List<Result>) DBBroker.getInstance().getRecords(new Result());
+    private void addStudent(Migrant m){
+        DBBroker.getInstance().addRecord(m);
     }
     
-    private void addStudent(Migrant m){
-        populateStudentResultFields(m);
-        DBBroker.getInstance().addRecord(m);
+    private void sendEmailStudent(Migrant recipient, HttpServletRequest request) throws IOException, ServletException{
+        EmailUtil.sendEmail(recipient.getEmail(), "Hi!\n\nWelcome to MyGrowth: A platform for keeping track"
+                + " of your education!\n\nHere is your student code: "
+                +recipient.getStudentCode()+"\n\nKeep it safe at ALL times. It serves"
+                + " as your identity on our platform.\n\nNow go,"
+                + " learn and make yourself proud!\n\nMyGrowth team.", "Welcome to MyGrowth!", "megroweducation@gmail.com");
+            recipient.setProfileImageUrl(ImageUpload.uploadImage(request, "studentPhoto", recipient.getStudentCode()));
     }
 
 }
